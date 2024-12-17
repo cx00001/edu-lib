@@ -46,6 +46,19 @@ namespace Edu_Library.Controllers
             };
 
             var identity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
+
+            var principal = new ClaimsPrincipal(identity);
+
+            await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, principal);
+
+            if (user.Role == "Admin")
+            {
+                return RedirectToAction("Admin", "Admin");
+            }
+            else
+            {
+                return RedirectToAction("Index", "Books");
+            }
         }
 
         public IActionResult Index()
