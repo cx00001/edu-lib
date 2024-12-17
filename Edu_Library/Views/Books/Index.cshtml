@@ -1,0 +1,38 @@
+﻿@model IEnumerable<Edu_Library.Models.Book_tb>
+@* Declare the model used in the view as part of the list in Book_tb *@
+
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/site.css" />
+</head>
+<body>
+    <div class="container py-5">
+        <div class="row">
+            @foreach (var book in Model)
+            {
+                <div class="col-md-3 mb-4">
+                    <div class="card h-100 border-light shadow-sm rounded">
+                        <img src="@book.CoverImage" class="card-img-top" alt="@book.Name" style="height: 200px; object-fit: cover; transition: transform 0.3s ease, opacity 0.3s ease" />
+
+                        <div class="card-body p-4">
+                            <h3 class="card-title">@book.Name</h3>
+                            <p class="card-text text-muted" style="font-size: 1rem;">@book.Detail</p>
+                            <div class="d-flex justify-content-between align-items-center mt-3">
+                                <span class="text-muted" style="font-size: 0.875rem;">Category: @book.Category?.Name</span>
+                            </div>
+                        </div>
+
+                        <div class="card-footer bg-transparent border-0">
+                            <small class="text-muted">Author: @book.Author</small>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</body>
+</html>
